@@ -16,6 +16,6 @@ public class MyCreditSlipsPage {
         wait.until(ExpectedConditions.elementToBeClickable(backToMyCountSelector));
         driver.findElement(backToMyCountSelector).click();
         return new MyAccountPage(driver);
-    }//
+    }
 
 }
