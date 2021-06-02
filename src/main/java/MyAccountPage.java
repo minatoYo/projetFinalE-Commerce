@@ -10,11 +10,19 @@ public class MyAccountPage {
     By myPersonalInfoSelector = By.cssSelector(".icon-user");
     By myWishListSelector = By.cssSelector(".icon-heart");
     By homeSelector = By.cssSelector(".footer_links>li>a");
+    By usernameDisplaySelector = By.cssSelector(".header_user_info>a>span");
 
     public MyAccountPage(WebDriver driver){
         this.driver=driver;
     }
 
+    public MyAccountPage displayMyUsernameText() {
+        String reslutExpected = "Fouad DJOUADI";
+        String resultFound = driver.findElement(usernameDisplaySelector).getText();
+
+        Assert.assertEquals(resultFound,reslutExpected);
+        return this;
+    }
     public OrderHistoryPage goToOrderHistoryPage(){
         driver.findElement(orderHistorySelector).click();
         return new OrderHistoryPage(driver);
@@ -45,13 +53,10 @@ public class MyAccountPage {
         return new HomePage(driver);
     }
 
-    public MyAccountPage displayMyAccountText(){
-        String reslutExpected = "MY ACCOUNT";
+    public String getMyAccountText(){
         By textMyAccountSelector = By.cssSelector(".page-heading");
-        String resultFound  = driver.findElement(textMyAccountSelector).getText();
-
-        Assert.assertEquals(resultFound,reslutExpected);
-        return this;
-
+        String resultFound = driver.findElement(textMyAccountSelector).getText();
+        return resultFound;
     }
+
 }
