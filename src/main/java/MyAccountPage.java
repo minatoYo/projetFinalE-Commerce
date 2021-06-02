@@ -16,7 +16,7 @@ public class MyAccountPage {
         this.driver=driver;
     }
 
-    public MyAccountPage displayMyUsernameText() {
+    public MyAccountPage getymyusernametext() {
         String reslutExpected = "Fouad DJOUADI";
         String resultFound = driver.findElement(usernameDisplaySelector).getText();
 

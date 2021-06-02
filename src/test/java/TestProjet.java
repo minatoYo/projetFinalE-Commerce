@@ -16,7 +16,7 @@ public class TestProjet {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://automationpractice.com/index.php");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterMethod
@@ -28,30 +28,30 @@ public class TestProjet {
     public void testCreateAccount() {
 
         HomePage hm = new HomePage(driver);
-        hm
+                hm
                 .goToSignInPage()
-                .signUp("xtelle_saade9@hotmail.com")
-                .enterName("")
-                .enterLastName("")
-                .enterPassword("")
-                .enterAddress("")
-                .enterZip("")
-                .enterCity("")
+                .signUp("xtelle_saakkkde9@hotmail.com")
+                .enterName("rtgr'g")
+                .enterLastName("az'tr")
+                .enterPassword("mdamspmspei75@")
+                .enterAddress("dchgaiyegduiaehdoz deafzef fezfze")
+                .enterZip("95100")
+                .enterCity("paris")
                 .chooseSex()
                 .chooseState()
                 .birthDay()
                 .chooseCountry()
-                .enterPhoneNumber("")
+                .enterPhoneNumber("0605712275")
                 .registerButton();
     }
 
     @Test //Vérification du contenu de la page "MY ACCOUNT"et du bouton "Home"  (Us 01)
     public void testMyAccountContains() {
         HomePage hm = new HomePage(driver);
-        hm
+                hm
                 .goToSignInPage()
                 .logIn("fouaddjouadi1@gmail.com", "azerty")
-                .displayMyUsernameText()
+                .getymyusernametext()  // vérifier la prsence du userName sur la page
                 .goToOrderHistoryPage()
                 .backToMyAccount()
                 .goToCreditSlipPage()
@@ -73,18 +73,22 @@ public class TestProjet {
         String a = hm
                 .goToSignInPage()
                 .logIn("fouaddjouadi1@gmail.com", "azerty")
-                .getMyAccountText();  // vérifier la presence du texte : MY ACCOUNT
+                .getMyAccountText();
 
-        Assert.assertEquals(a, reslutExpected);
+        Assert.assertEquals(a, reslutExpected);  // vérifier la presence du texte : MY ACCOUNT
     }
 
         @Test  // (Us 02)
-        public void faildauthentification() {
+        public void faildAuthentification() {
+            String resultExpected = "Authentification failed.";
+
             HomePage hm = new HomePage(driver);
-                    hm
+                  String a =  hm
                     .goToSignInPage()
                     .enterWrongPassword("fouaddjouadi1@gmail.com", "02020202") // mettre un faut password
-                    .getErrorMessage();   // vérifier bien si Authenfication failed" s'affiche
+                    .getErrorMessage();
+
+            Assert.assertEquals(a,resultExpected);  // vérifier bien si Authenfication failed" s'affiche
         }
     }
 
