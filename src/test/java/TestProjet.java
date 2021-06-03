@@ -118,16 +118,6 @@ public class TestProjet {
                     .clickOnlogo();
 
         }
-    }
-
-        HomePage hm = new HomePage(driver);
-        hm
-                .goToSignInPage()
-                .logIn("fouaddjouadi1@gmail.com", "azerty")
-                .displayMyAccountText();  // vérifier la presence du texte : MY ACCOUNT
-    }
-
- 
 
     @Test //(US 06)
     public void TestAddress() {
