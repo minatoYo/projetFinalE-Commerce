@@ -97,7 +97,4 @@ public class MyAccountPage {
         String resultFound = driver.findElement(textMyAccountSelector).getText();
         return resultFound;
     }
-
-
-
 }

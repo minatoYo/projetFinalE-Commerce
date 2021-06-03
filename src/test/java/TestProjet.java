@@ -28,7 +28,7 @@ public class TestProjet {
     public void testCreateAccount() {
 
         HomePage hm = new HomePage(driver);
-                hm
+        hm
                 .goToSignInPage()
                 .signUp("xtelle_saakkkde9@hotmail.com")
                 .enterName("rtgr'g")
@@ -52,6 +52,7 @@ public class TestProjet {
                 .goToSignInPage()
                 .logIn("fouaddjouadi1@gmail.com", "azerty")
                 .getymyusernametext()  // vérifier la prsence du userName sur la page
+
                 .goToOrderHistoryPage()
                 .backToMyAccount()
                 .goToCreditSlipPage()
@@ -67,6 +68,7 @@ public class TestProjet {
 
     @Test //   (Us 02)
     public void testAccountConnection() {
+
         String reslutExpected = "MY ACCOUNT";
 
         HomePage hm = new HomePage(driver);
@@ -118,3 +120,85 @@ public class TestProjet {
         }
     }
 
+        HomePage hm = new HomePage(driver);
+        hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .displayMyAccountText();  // vérifier la presence du texte : MY ACCOUNT
+    }
+
+ 
+
+    @Test //(US 06)
+    public void TestAddress() {
+        String expectedString = "MY ADDRESS";
+        HomePage AutomationPracticeHomePage = new HomePage(driver);
+        String addressSpaceTitle = AutomationPracticeHomePage
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToAddressPage()
+                .getAddressSpaceTitle();
+        // Asserts
+        Assert.assertEquals(addressSpaceTitle, expectedString);
+
+    }
+
+    @Test // (US 06)
+    public void TestClientInformation() {
+
+        String expectedName = "Fouad";
+        String expectedLastName = "DJOUADI";
+        String expectedAddress = "45 AVE FOCHEoo";
+        String expectedPhoneNumber = "0605712272";
+
+        HomePage AutomationPracticeHomePage = new HomePage(driver);
+        MyAdressesPage AddressPage = AutomationPracticeHomePage
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToAddressPage();
+
+        String lastName = AddressPage.getLastName();
+        String name = AddressPage.getName();
+        String address = AddressPage.getAddress();
+        String phoneNumber = AddressPage.getPhoneNumber();
+
+        // Asserts
+        Assert.assertEquals(name, expectedName);
+        Assert.assertEquals(lastName, expectedLastName);
+        Assert.assertEquals(phoneNumber, expectedPhoneNumber);
+        Assert.assertEquals(address, expectedAddress);
+
+    }
+
+
+    @Test // (US 06)
+    public void UpdateAdressTest() {
+
+        String updatedAddress = "UPDATED ADDRESS";
+        HomePage AutomationPracticeHomePage = new HomePage(driver);
+        MyAdressesPage AdressPage = AutomationPracticeHomePage
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToAddressPage()
+                .goToUpdateAddress()
+                .updateAddress(updatedAddress);
+
+    }
+
+    @Test //(US 06)
+    public void AddNewAdressTest() {
+
+        String newAddress = "NEW ADDRESS";
+        HomePage AutomationPracticeHomePage = new HomePage(driver);
+        MyAdressesPage AdressPage = AutomationPracticeHomePage
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToAddressPage()
+                .goToAddAnAddress()
+                .chooseState()
+                .createNewAddress("b","paris","13008","4","assigned");
+
+    }
+
+
+}
