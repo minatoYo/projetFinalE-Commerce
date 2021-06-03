@@ -148,7 +148,7 @@ public class TestProjet {
 
         String expectedName = "Fouad";
         String expectedLastName = "DJOUADI";
-        String expectedAddress = "45 AVE FOCHEoo";
+        String expectedAddress = "UPDATED ADDRESS";
         String expectedPhoneNumber = "0605712272";
 
         HomePage AutomationPracticeHomePage = new HomePage(driver);
