@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class MyAccountPage {
@@ -11,6 +13,7 @@ public class MyAccountPage {
     By myWishListSelector = By.cssSelector(".icon-heart");
     By homeSelector = By.cssSelector(".footer_links>li>a");
     By usernameDisplaySelector = By.cssSelector(".header_user_info>a>span");
+    By logoSelector = By.cssSelector("#header_logo>a>img");
 
     public MyAccountPage(WebDriver driver){
         this.driver=driver;
@@ -48,7 +51,43 @@ public class MyAccountPage {
         return new MyWishlistsPage(driver);
     }
 
+    public WomenPage goToWomenPage(){
+        By womenSelector =  By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/a");
+
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.elementToBeClickable(womenSelector));
+
+        driver.findElement(womenSelector).click();
+
+        return new WomenPage(driver);
+    }
+
+    public CardPage goToCardPage(){
+
+        By cardSelector =  By.cssSelector(".shopping_cart>a");
+        driver.findElement(cardSelector).click();
+
+        return new CardPage(driver);
+    }
+    public ContactUsPage goToContactUsdPage(){
+
+        By contactUsSelector =  By.cssSelector("#contact-link");
+        driver.findElement(contactUsSelector).click();
+
+        return new ContactUsPage(driver);
+    }
+
+    public HomePage clickOnlogo(){
+
+        driver.findElement(logoSelector).click();
+
+        return new HomePage(driver);
+    }
     public HomePage goToHomePage(){
+
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(homeSelector));
+
         driver.findElement(homeSelector).click();
         return new HomePage(driver);
     }
@@ -58,5 +97,7 @@ public class MyAccountPage {
         String resultFound = driver.findElement(textMyAccountSelector).getText();
         return resultFound;
     }
+
+
 
 }

@@ -16,7 +16,7 @@ public class TestProjet {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://automationpractice.com/index.php");
-       // driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterMethod
@@ -89,6 +89,32 @@ public class TestProjet {
                     .getErrorMessage();
 
             Assert.assertEquals(a,resultExpected);  // vérifier bien si Authenfication failed" s'affiche
+        }
+
+        @Test  // test us 03 (Vérification du Logo sur toutes les pages)
+        public void testExistingLogoOnAllPages(){
+        HomePage hm = new HomePage(driver);
+            hm
+                    .goToSignInPage()
+                    .logIn("fouaddjouadi1@gmail.com", "azerty")
+                    .goToOrderHistoryPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToCreditSlipPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToAddressPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToPersonalInformationPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToWishlistsPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToWomenPage()
+                    .backToMyAccountPage()
+                    .goToCardPage()
+                    .backToMyAccountPage()
+                    .goToContactUsdPage()
+                    .backToMyAccountPage()
+                    .clickOnlogo();
+
         }
     }
 

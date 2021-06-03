@@ -18,4 +18,19 @@ public class MyCreditSlipsPage {
         return new MyAccountPage(driver);
     }
 
+    public MyAccountPage backToMyAccountAfterVerificationExistingLogo(){
+        By logoSelector = By.cssSelector("#header_logo>a>img");
+
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.elementToBeClickable(logoSelector));
+
+        if (driver.findElement(logoSelector).isDisplayed())
+        {
+            System.out.println("le logo est présent");
+        }else{
+            System.out.println("ouuuups le logo n'est pas présent");
+        }
+        driver.findElement(backToMyCountSelector).click();
+        return new MyAccountPage(driver);
+    }
 }
