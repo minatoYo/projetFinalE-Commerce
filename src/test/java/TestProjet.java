@@ -27,18 +27,18 @@ public class TestProjet {
     @Test //Account creation (Us 01)
     public void testCreateAccount() {
 
-        HomePage hm = new HomePage(driver);
-        hm
+        HomePage AutomationPracticeHomePage = new HomePage(driver);
+                 AutomationPracticeHomePage
                 .goToSignInPage()
-                .signUp("xtelle_saakkkde9@hotmail.com")
-                .enterName("rtgr'g")
-                .enterLastName("az'tr")
-                .enterPassword("mdamspmspei75@")
-                .enterAddress("dchgaiyegduiaehdoz deafzef fezfze")
-                .enterZip("95100")
-                .enterCity("paris")
+                .signUp("chrisftellesiaade@hotmail.com")
+                .enterName("Christelle")
+                .enterLastName("Saade")
+                .enterPassword("azerty")
+                .enterAddress("5 avenue du parc Borely")
+                .enterZip("13008")
+                .enterCity("Marseille")
                 .chooseSex()
-                .chooseState()
+                .chooseState(23)
                 .birthDay()
                 .chooseCountry()
                 .enterPhoneNumber("0605712275")
@@ -46,25 +46,91 @@ public class TestProjet {
     }
 
     @Test //Vérification du contenu de la page "MY ACCOUNT"et du bouton "Home"  (Us 01)
-    public void testMyAccountContains() {
+    public void testOrderHistory() {
+        String resultExpected = "ORDER HISTORY";
         HomePage hm = new HomePage(driver);
-                hm
+              String a =  hm
                 .goToSignInPage()
                 .logIn("fouaddjouadi1@gmail.com", "azerty")
-                .getymyusernametext()  // vérifier la prsence du userName sur la page
-
                 .goToOrderHistoryPage()
-                .backToMyAccount()
-                .goToCreditSlipPage()
-                .backToMyAccount()
-                .goToAddressPage()
-                .backToMyAccount()
-                .goToPersonalInformationPage()
-                .backToMyAccount()
-                .goToWishlistsPage()
-                .backToMyAccount()
-                .goToHomePage();
+                .getOrderHistoryText();
+
+
+        Assert.assertEquals(a, resultExpected);
+
     }
+
+    @Test //Vérification du contenu de la page "MY ACCOUNT"et du bouton "Home"  (Us 01)
+    public void testCreditSlips() {
+        HomePage hm = new HomePage(driver);
+        String resultExpected = "CREDIT SLIPS";
+        String a = hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToCreditSlipPage()
+                .getCrediSlipsText();
+
+        Assert.assertEquals(a, resultExpected);
+
+    }
+
+    @Test //Vérification du contenu de la page "MY ACCOUNT"et du bouton "Home"  (Us 01)
+    public void testAddress() {
+        HomePage hm = new HomePage(driver);
+        hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToAddressPage();
+
+    }
+    @Test
+    public void testPersonalInformation() {
+        HomePage hm = new HomePage(driver);
+        String resultExpected = "YOUR PERSONAL INFORMATION";
+        String PersonalInformationText = hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToPersonalInformationPage()
+                .getMyPersonalInformationText();
+
+        Assert.assertEquals(PersonalInformationText, resultExpected);
+
+    }
+
+    @Test
+    public void verifyExistingUserName() {
+        HomePage hm = new HomePage(driver);
+        String resultExpected = "YOUR PERSONAL INFORMATION";
+        String PersonalInformationText = hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .getymyusernametext() ;
+
+        Assert.assertEquals(PersonalInformationText, resultExpected); // vérifier la prsence du userName sur la page
+
+    }
+    @Test
+    public void testWishlists() {
+        HomePage hm = new HomePage(driver);
+        String wishlistTextExpected = "MY WISHLISTS";
+        String wishlistText = hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToWishlistsPage()
+                .getWishlistText();
+
+        Assert.assertEquals(wishlistText, wishlistTextExpected);
+    }
+    @Test
+    public void testHomeButton() {
+        HomePage hm = new HomePage(driver);
+        hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .goToHomePage();
+
+    }
+
 
     @Test //   (Us 02)
     public void testAccountConnection() {
@@ -118,14 +184,14 @@ public class TestProjet {
                     .clickOnlogo();
 
         }
-    }
 
-        HomePage hm = new HomePage(driver);
-        hm
-                .goToSignInPage()
-                .logIn("fouaddjouadi1@gmail.com", "azerty")
-                .displayMyAccountText();  // vérifier la presence du texte : MY ACCOUNT
-    }
+
+//        HomePage hm = new HomePage(driver);
+//        hm
+//                .goToSignInPage()
+//                .logIn("fouaddjouadi1@gmail.com", "azerty")
+//                .displayMyAccountText();  // vérifier la presence du texte : MY ACCOUNT
+//    }
 
  
 

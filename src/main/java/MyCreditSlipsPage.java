@@ -33,4 +33,11 @@ public class MyCreditSlipsPage {
         driver.findElement(backToMyCountSelector).click();
         return new MyAccountPage(driver);
     }
+
+    public String getCrediSlipsText(){
+        By creditSlipsTextSelector = By.cssSelector("#center_column>.page-heading");
+        String resultFound = driver.findElement(creditSlipsTextSelector).getText();
+        return resultFound;
+    }
+
 }

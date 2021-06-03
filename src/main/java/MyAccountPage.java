@@ -2,7 +2,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 public class MyAccountPage {
     WebDriver driver;
@@ -19,12 +18,10 @@ public class MyAccountPage {
         this.driver=driver;
     }
 
-    public MyAccountPage getymyusernametext() {
+    public String getymyusernametext() {
         String reslutExpected = "Fouad DJOUADI";
         String resultFound = driver.findElement(usernameDisplaySelector).getText();
-
-        Assert.assertEquals(resultFound,reslutExpected);
-        return this;
+        return resultFound;
     }
     public OrderHistoryPage goToOrderHistoryPage(){
         driver.findElement(orderHistorySelector).click();
@@ -62,12 +59,12 @@ public class MyAccountPage {
         return new WomenPage(driver);
     }
 
-    public CardPage goToCardPage(){
+    public CartPage goToCardPage(){
 
         By cardSelector =  By.cssSelector(".shopping_cart>a");
         driver.findElement(cardSelector).click();
 
-        return new CardPage(driver);
+        return new CartPage(driver);
     }
     public ContactUsPage goToContactUsdPage(){
 
@@ -97,4 +94,6 @@ public class MyAccountPage {
         String resultFound = driver.findElement(textMyAccountSelector).getText();
         return resultFound;
     }
+
+
 }

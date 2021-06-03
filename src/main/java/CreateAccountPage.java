@@ -1,6 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateAccountPage {
@@ -16,7 +17,7 @@ public class CreateAccountPage {
     By yearSelector = By.cssSelector("#years>[value=\"1993\"]");
     By adressSelector = By.cssSelector("#address1");
     By citySelector = By.cssSelector("#city");
-    By stateSelector = By.cssSelector("#id_state>[value='2']");
+    By stateSelector = By.cssSelector("#id_state");
     By postalCodeSelector = By.cssSelector("#postcode");
     By contrySelector = By.cssSelector("#id_country");
     By phoneNumberSelector = By.cssSelector("#phone_mobile");
@@ -31,57 +32,100 @@ public class CreateAccountPage {
         wait.until(ExpectedConditions.elementToBeClickable(firstNameSelector));
 
         driver.findElement(firstNameSelector).sendKeys(name);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
         public CreateAccountPage enterLastName(String lastName) {
 
             driver.findElement(lasttNameSelector).sendKeys(lastName);
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return this;
         }
 
     public CreateAccountPage enterZip(String zip) {
 
         driver.findElement(postalCodeSelector).sendKeys(zip);
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
     public CreateAccountPage enterPassword (String password) {
 
         driver.findElement(passSelector).sendKeys(password);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
     public CreateAccountPage enterAddress (String address) {
 
         driver.findElement(adressSelector).sendKeys(address);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
     public CreateAccountPage enterCity (String city) {
 
         driver.findElement(citySelector).sendKeys(city);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
-    public CreateAccountPage chooseSex () {
+    public CreateAccountPage chooseSex() {
         WebDriverWait wait = new WebDriverWait(driver,3);
         wait.until(ExpectedConditions.elementToBeClickable(sexSelector));
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(sexSelector).click();
         return this;
     }
 
-    public CreateAccountPage chooseState () {
+    public CreateAccountPage chooseState(int index) {
         WebDriverWait wait = new WebDriverWait(driver,10);
-        wait.until(ExpectedConditions.elementToBeClickable(stateSelector));
 
-        driver.findElement(stateSelector).click();
+        Select stateDropdown = new Select(driver.findElement(stateSelector));
+        stateDropdown.selectByIndex(index);
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return this;
     }
 
     public CreateAccountPage birthDay () {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(daySelector).click();
         driver.findElement(monthSelector).click();
         driver.findElement(yearSelector).click();
@@ -89,13 +133,22 @@ public class CreateAccountPage {
     }
 
     public CreateAccountPage chooseCountry () {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(contrySelector).click();
         return this;
     }
         //driver.findElement(emailSelector).sendKeys("");
 
     public CreateAccountPage enterPhoneNumber (String phoneNumber) {
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(phoneNumberSelector).sendKeys(phoneNumber);
         return this;
     }
@@ -104,7 +157,11 @@ public class CreateAccountPage {
 
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.elementToBeClickable(registerAcount));
-
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         driver.findElement(registerAcount).click();
         return new MyAccountPage(driver);
     }

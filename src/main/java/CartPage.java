@@ -3,10 +3,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class CardPage {
+public class CartPage {
     WebDriver driver;
 
-    public CardPage(WebDriver driver) {
+    public CartPage(WebDriver driver) {
         this.driver = driver;
     }
 

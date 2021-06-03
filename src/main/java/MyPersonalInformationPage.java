@@ -34,4 +34,11 @@ public class MyPersonalInformationPage {
         driver.findElement(backToMyCountSelector).click();
         return new MyAccountPage(driver);
     }
+
+    public String getMyPersonalInformationText(){
+        By PersonalInfoTextSelector = By.cssSelector(".box>.page-subheading");
+        String resultFound = driver.findElement(PersonalInfoTextSelector).getText();
+        return resultFound;
+    }
+
 }

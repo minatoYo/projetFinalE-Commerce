@@ -35,4 +35,11 @@ public class OrderHistoryPage {
         driver.findElement(backToMyCountSelector).click();
         return new MyAccountPage(driver);
     }
+
+    public String getOrderHistoryText(){
+        By OrderHistoryTextSelector = By.cssSelector(".center_column>.page-heading");
+        String resultFound = driver.findElement(OrderHistoryTextSelector).getText();
+        return resultFound;
+    }
+
 }

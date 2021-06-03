@@ -33,4 +33,11 @@ public class MyWishlistsPage {
         driver.findElement(backToMyCountSelector).click();
         return new MyAccountPage(driver);
     }
+
+    public String getWishlistText(){
+        By wishlistTextSelector = By.cssSelector("#mywishlist");
+        String resultFound = driver.findElement(wishlistTextSelector).getText();
+        return resultFound;
+    }
+
 }
