@@ -27,6 +27,8 @@ public class CreateAccountPage {
     }
 
     public CreateAccountPage enterName(String name) {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(firstNameSelector));
 
         driver.findElement(firstNameSelector).sendKeys(name);
         return this;
@@ -41,6 +43,7 @@ public class CreateAccountPage {
     public CreateAccountPage enterZip(String zip) {
 
         driver.findElement(postalCodeSelector).sendKeys(zip);
+
         return this;
     }
 
@@ -71,6 +74,9 @@ public class CreateAccountPage {
     }
 
     public CreateAccountPage chooseState () {
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(stateSelector));
+
         driver.findElement(stateSelector).click();
         return this;
     }
@@ -95,6 +101,9 @@ public class CreateAccountPage {
     }
 
     public MyAccountPage registerButton () {
+
+        WebDriverWait wait = new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(registerAcount));
 
         driver.findElement(registerAcount).click();
         return new MyAccountPage(driver);

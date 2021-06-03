@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 public class ErrorAuthentificationPage {
@@ -10,14 +12,16 @@ public class ErrorAuthentificationPage {
         this.driver=driver;
     }
 
-    public ErrorAuthentificationPage getErrorMessage(){
-
+    public String getErrorMessage(){
         String resultExpected = "Authentification failed.";
-        String resultFound = driver.findElement(errorMessagePasswordSelector).getText();
-        System.out.println(resultFound);
 
-        Assert.assertEquals(resultFound,resultExpected);
-        return this;
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(errorMessagePasswordSelector));
+
+        String resultFound = driver.findElement(errorMessagePasswordSelector).getText();
+
+        return resultFound;
+
     }
 
 }

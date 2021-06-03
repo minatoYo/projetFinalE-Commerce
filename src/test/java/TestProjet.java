@@ -16,7 +16,7 @@ public class TestProjet {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("http://automationpractice.com/index.php");
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     @AfterMethod
@@ -30,27 +30,29 @@ public class TestProjet {
         HomePage hm = new HomePage(driver);
         hm
                 .goToSignInPage()
-                .signUp("xtelle_saade9@hotmail.com")
-                .enterName("")
-                .enterLastName("")
-                .enterPassword("")
-                .enterAddress("")
-                .enterZip("")
-                .enterCity("")
+                .signUp("xtelle_saakkkde9@hotmail.com")
+                .enterName("rtgr'g")
+                .enterLastName("az'tr")
+                .enterPassword("mdamspmspei75@")
+                .enterAddress("dchgaiyegduiaehdoz deafzef fezfze")
+                .enterZip("95100")
+                .enterCity("paris")
                 .chooseSex()
                 .chooseState()
                 .birthDay()
                 .chooseCountry()
-                .enterPhoneNumber("")
+                .enterPhoneNumber("0605712275")
                 .registerButton();
     }
 
     @Test //Vérification du contenu de la page "MY ACCOUNT"et du bouton "Home"  (Us 01)
     public void testMyAccountContains() {
         HomePage hm = new HomePage(driver);
-        hm
+                hm
                 .goToSignInPage()
                 .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .getymyusernametext()  // vérifier la prsence du userName sur la page
+
                 .goToOrderHistoryPage()
                 .backToMyAccount()
                 .goToCreditSlipPage()
@@ -62,11 +64,62 @@ public class TestProjet {
                 .goToWishlistsPage()
                 .backToMyAccount()
                 .goToHomePage();
-
     }
 
     @Test //   (Us 02)
     public void testAccountConnection() {
+
+        String reslutExpected = "MY ACCOUNT";
+
+        HomePage hm = new HomePage(driver);
+        String a = hm
+                .goToSignInPage()
+                .logIn("fouaddjouadi1@gmail.com", "azerty")
+                .getMyAccountText();
+
+        Assert.assertEquals(a, reslutExpected);  // vérifier la presence du texte : MY ACCOUNT
+    }
+
+        @Test  // (Us 02)
+        public void faildAuthentification() {
+            String resultExpected = "Authentification failed.";
+
+            HomePage hm = new HomePage(driver);
+                  String a =  hm
+                    .goToSignInPage()
+                    .enterWrongPassword("fouaddjouadi1@gmail.com", "02020202") // mettre un faut password
+                    .getErrorMessage();
+
+            Assert.assertEquals(a,resultExpected);  // vérifier bien si Authenfication failed" s'affiche
+        }
+
+        @Test  // test us 03 (Vérification du Logo sur toutes les pages)
+        public void testExistingLogoOnAllPages(){
+        HomePage hm = new HomePage(driver);
+            hm
+                    .goToSignInPage()
+                    .logIn("fouaddjouadi1@gmail.com", "azerty")
+                    .goToOrderHistoryPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToCreditSlipPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToAddressPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToPersonalInformationPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToWishlistsPage()
+                    .backToMyAccountAfterVerificationExistingLogo()
+                    .goToWomenPage()
+                    .backToMyAccountPage()
+                    .goToCardPage()
+                    .backToMyAccountPage()
+                    .goToContactUsdPage()
+                    .backToMyAccountPage()
+                    .clickOnlogo();
+
+        }
+    }
+
         HomePage hm = new HomePage(driver);
         hm
                 .goToSignInPage()
@@ -74,15 +127,7 @@ public class TestProjet {
                 .displayMyAccountText();  // vérifier la presence du texte : MY ACCOUNT
     }
 
-    @Test  // (Us 02)
-    public void errorPassword() {
-        HomePage hm = new HomePage(driver);
-        hm
-                .goToSignInPage()
-                .enterWrongPassword("fouaddjouadi1@gmail.com", "02020202") // mettre un faut password
-                .getErrorMessage();   // vérifier bien si Authenfication failed" s'affiche
-
-    }
+ 
 
     @Test //(US 06)
     public void TestAddress() {

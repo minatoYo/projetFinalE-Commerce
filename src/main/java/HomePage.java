@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 
@@ -13,6 +15,10 @@ public class HomePage {
 
 
     public AuthentificationPage goToSignInPage(){
+
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.elementToBeClickable(signInLinkSelector));
+
         driver.findElement(signInLinkSelector).click();
         return new AuthentificationPage(driver);
     }

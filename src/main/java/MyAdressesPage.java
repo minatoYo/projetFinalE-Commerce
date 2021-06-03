@@ -1,8 +1,12 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MyAdressesPage {
     WebDriver driver;
+
+    By backToMyCountSelector = By.cssSelector(".footer_links li:nth-of-type(1)");
     By addressSpaceTitleSelector = By.cssSelector("div h3");
     By phoneSelector = By.cssSelector(".last_item li:nth-of-type(7)");
     By nameSelector = By.cssSelector(".address_name:nth-of-type(1)");
@@ -14,7 +18,26 @@ public class MyAdressesPage {
     }
 
     public MyAccountPage backToMyAccount() {
-        By backToMyCountSelector = By.cssSelector(".footer_links li:nth-of-type(1)");
+
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.elementToBeClickable(backToMyCountSelector));
+
+        driver.findElement(backToMyCountSelector).click();
+        return new MyAccountPage(driver);
+    }
+
+    public MyAccountPage backToMyAccountAfterVerificationExistingLogo(){
+        By logoSelector = By.cssSelector("#header_logo>a>img");
+
+        WebDriverWait wait = new WebDriverWait(driver,3);
+        wait.until(ExpectedConditions.elementToBeClickable(logoSelector));
+
+        if (driver.findElement(logoSelector).isDisplayed())
+        {
+            System.out.println("le logo est présent");
+        }else{
+            System.out.println("ouuuups le logo n'est pas présent");
+        }
         driver.findElement(backToMyCountSelector).click();
         return new MyAccountPage(driver);
     }
