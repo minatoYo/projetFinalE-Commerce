@@ -1,4 +1,6 @@
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -187,6 +189,72 @@ public class TestProjet {
                 .goToAddAnAddress()
                 .chooseState()
                 .createNewAddress("b","paris","13008","4","assigned");
+
+    }
+
+    @Test  // (Us 04)
+    public void searchProduct() {
+        String textProductExpected = "\"DRESSES \"";
+        HomePage hm = new HomePage(driver);
+        hm
+                .entrer_text_dresses()
+                .go_to_wen();
+
+
+        String textProduct = new SearchPageResult(driver).get_true_Text();
+
+        // Asserts
+        Assert.assertEquals(textProduct ,textProductExpected );
+
+    }
+
+
+    @Test  // (Us 04)
+    public void searchWrongProduct() {
+        String textWrongProductExpected = "No results were found for your search \"xbox\"";
+        HomePage hm = new HomePage(driver);
+        hm
+                .entrer_text_xbox()
+                .go_to_wen();
+
+        String textWrongProduct = new SearchPageResult(driver).get_false_Text();
+
+        // Asserts
+        Assert.assertEquals(textWrongProduct,textWrongProductExpected );
+
+    }
+
+
+
+    @Test  // (Us 04)
+    public void searchTextResultCompletion() {
+        String textCompletionResultExpected="Printed Dress";
+        HomePage hm = new HomePage(driver);
+        hm
+                .entrer_text_completion();
+
+        String textCompletionProduct = new ArticleOpenning(driver).get_Text_completion();
+
+        // Asserts
+        Assert.assertEquals(textCompletionProduct,textCompletionResultExpected);
+
+
+    }
+
+    @Test  // (Us 04)
+    public void GoToAllPage() {
+
+        WebElement search=driver.findElement(By.cssSelector("[name='submit_search']"));
+        WebElement wen =driver.findElement(By.id("search_query_top"));
+        HomePage hm = new HomePage(driver);
+        hm
+                .page_women_all_sous_menu();
+
+
+
+        //Assert.assertTrue(search.isDisplayed(),"la recherche n'es pas visible ");
+       // Assert.assertTrue(wen.isDisplayed(),"la loupe nes pas visible ");
+
 
     }
 
